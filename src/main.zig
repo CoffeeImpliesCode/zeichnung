@@ -128,7 +128,7 @@ pub fn main() !void {
     gl.glBindBuffer(gl.GL_ARRAY_BUFFER, vbo);
     gl.glBufferData(gl.GL_ARRAY_BUFFER, @intCast(std.mem.sliceAsBytes(data).len), @ptrCast(data.ptr), gl.GL_STATIC_DRAW);
     gl.glEnableVertexAttribArray(0);
-    gl.glVertexAttribPointer(0, 3, gl.GL_FLOAT, gl.GL_FALSE, 2 * @sizeOf(f32), null);
+    gl.glVertexAttribPointer(0, 3, gl.GL_FLOAT, gl.GL_FALSE, 3 * @sizeOf(f32), null);
 
     var timer = try z.Timer.init();
 
