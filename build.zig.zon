@@ -1,0 +1,15 @@
+.{
+    .name = "zeichnung",
+    .version = "0.0.0",
+    .dependencies = .{
+        .@"zig-wayland" = .{
+            .url = "https://github.com/bentheklutz/zig-wayland/archive/8fe4e2cc2e6a8eeb892273965b24b7295351482d.tar.gz",
+            .hash = "12203291a1e64fd6ac99ec50b90958d019efea707084ad746e2a28b9194692dea336",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
