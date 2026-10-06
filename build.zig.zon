@@ -1,5 +1,5 @@
 .{
-    .name = "zeichnung",
+    .name = .zeichnung,
     .version = "0.0.0",
     .dependencies = .{
         .@"zig-wayland" = .{

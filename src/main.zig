@@ -84,7 +84,7 @@ pub fn glDebugProc(source: gl.GLenum, @"type": gl.GLenum, id: gl.GLuint, severit
 }
 
 pub fn main() !void {
-    var GPA = std.heap.GeneralPurposeAllocator(.{}){};
+    var GPA: std.heap.DebugAllocator(.{}) = .init;
     defer _ = GPA.deinit();
     const alloc = GPA.allocator();
 
@@ -113,6 +113,8 @@ pub fn main() !void {
     // gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL);
 
     w.setTitle("Hello, world!");
+    const dir = try std.fs.openDirAbsolute("/home/janis/projects/zeichnung", .{});
+    try dir.setAsCwd();
 
     const prog = try loadShader(alloc, "shader/quad.vert", "shader/quad.frag");
     const data: []const f32 = &.{ -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.0, 0.5, 0.0 };
@@ -142,12 +144,12 @@ pub fn main() !void {
         gl.glUseProgram(prog);
         gl.glBindVertexArray(vao);
         gl.glDrawArrays(gl.GL_TRIANGLES, 0, 3);
-        // gl.glFlush();
+        gl.glFlush();
         // gl.glFinish();
+        w.wl_surface.damage(0, 0, @intCast(w.w), @intCast(w.h));
+        w.wl_surface.commit();
+        _ = w.z.display.flush();
         try w.swapBuffers();
-        // w.wl_surface.damage(0, 0, w.w, w.h);
-        // w.wl_surface.commit();
-        // _ = w.z.display.flush();
         // _ = w.z.display.dispatch();
     }
 }

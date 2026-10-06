@@ -9,7 +9,7 @@
       egl-wayland
       # libGL
       libglvnd
-      libdecor
+      # libdecor
       # libxkbcommon
       # vulkan-loader
       # vulkan-headers
